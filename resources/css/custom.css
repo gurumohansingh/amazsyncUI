@@ -1,0 +1,91 @@
+.round {
+  border-radius: 3px !important;
+}
+.formborder {
+  border: 1px;
+  border-radius: 5px;
+  border-style: solid;
+  box-shadow: 0px 0px 3px 1px #808080;
+  border-color: #f0c14b;
+}
+.btnStack {
+  font: bold 11px Arial;
+  text-decoration: none;
+  background-color: #eeeeee;
+  color: #333333;
+  padding: 2px 6px 2px 6px;
+  border-top: 1px solid #cccccc;
+  border-right: 1px solid #333333;
+  border-bottom: 1px solid #333333;
+  border-left: 1px solid #cccccc;
+}
+.error {
+  color: #ff0000;
+  font-style: italic;
+}
+.fontmustard {
+  color: #ff9a00;
+  font-size: 18px;
+}
+.fontmustardsbigsize {
+  font-size: 22px;
+}
+.x-grid-empty {
+  padding: 0 !important;
+  margin: 0 !important;
+  display: table !important;
+  width: 100% !important;
+  height: 99% !important;
+}
+.x-grid-empty .emptytext {
+  display: table-cell !important;
+  text-align: center !important;
+  vertical-align: middle !important;
+  color: #ff9a00;
+  font-size: 18px;
+}
+.linebreak .x-grid-cell-inner {
+  white-space: pre-line;
+  vertical-align: middle !important;
+}
+.productlistgrid .x-grid-td {
+  vertical-align: middle !important;
+  padding: 5px 0 5px 0;
+}
+.fontcolorgreen {
+  color: #008000 !important;
+}
+
+.fontcolorred {
+  color: #ff0000 !important;
+}
+.fontcolorAmz {
+  color: #b97c00 !important;
+}
+.productlistgrid .x-grid-item {
+  box-shadow: 0px 0px 5px #ff9a00;
+}
+.productlistgrid .x-grid-item:hover {
+  margin: 0.5px;
+}
+.headerbtn {
+  font-size: 22px;
+  border-radius: 15px !important;
+  font-family: "Raleway", sans-serif;
+  background-color: transparent;
+  background-image: linear-gradient(to left, #e6e6e6, #e6e6e6);
+  background-size: 0;
+  background-repeat-x: no-repeat;
+  border-image: linear-gradient(to left, #e6e6e6, #e6e6e6);
+  border-image-slice: 1;
+  transition: all 0.6s ease;
+}
+
+.headerbtn:hover {
+  background-size: 100%;
+  background-color: #ff9a00;
+}
+
+.x-action-col-icon {
+  margin: 5px !important;
+}
