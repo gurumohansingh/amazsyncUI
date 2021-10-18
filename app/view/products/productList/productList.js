@@ -55,13 +55,16 @@ Ext.define('AmazSync.view.products.productList.productList', {
                 width: 100,
                 items: [{
                     iconCls: 'x-fa fa-edit fontcolorgreen',
-                    handler: 'editProduct'
+                    handler: 'editProduct',
+                    tooltip:'Edit Product'
                 }, {
                     iconCls: 'x-fa fa-sync fontcolorgreen',
-                    handler: 'syncProduct'
+                    handler: 'syncProduct',
+                    tooltip:'Sync from Amazon'
                 }, {
                     iconCls: 'x-fa fa-dolly fontcolorgreen',
-                    handler: 'getProductSuppliers'
+                    handler: 'getProductSuppliers',
+                    tooltip:'View/Edit Suppliers'
                 }]
             },
             {

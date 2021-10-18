@@ -3,10 +3,12 @@ Ext.define('AmazSync.view.user.login.loginController', {
     alias: 'controller.user-login-login',
     init: function () {
         var me = this, vm = me.getViewModel(), view = me.getView(), form = view.getForm();
+        
         view.setHidden(true);
         var token = tokenStorage.retrieve();
         if (Ext.isEmpty(token)) {
             view.setHidden(false);
+            view.setLoading(false)
             return false;
         }
         view.setLoading(true)

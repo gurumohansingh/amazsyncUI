@@ -28,7 +28,7 @@ Ext.define('AmazSync.view.products.productList.suppliers.SupplierList', {
         defaults: {
             xtype: 'textfield',
             margin: 5,
-            width: 270
+            width: '100%'
         },
         items: [{
             xtype: 'container',
@@ -135,7 +135,8 @@ Ext.define('AmazSync.view.products.productList.suppliers.SupplierList', {
         handler: 'submit'
     }, {
         text: 'Cancel',
-        handler: 'cancel'
+        handler: 'cancel',
+        hidden: true
     }]
 
 });

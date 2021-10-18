@@ -34,9 +34,12 @@ Ext.define('AmazSync.view.products.productList.productListController', {
         productData['dimensionsHLocal'] = "";
         productData['dimensionsH'] = "";
         productData['tag'] = productData['tag'].split(',');
+        if(!Ext.isEmpty(productData['expirationDateRequired'])){
+            productData['expirationDateRequired']== 1?"Yes":"No";
+        }
         if (!Ext.isEmpty(productData['dimensions'])) {
-
-            var dimensions = JSON.parse(productData['dimensions']);
+            debugger
+            var dimensions = JSON.parse(productData['packageDimensions']);
             productData['dimensionsL'] = dimensions['Length'].Value;
             productData['dimensionsW'] = dimensions['Width'].Value;
             productData['dimensionsH'] = dimensions['Height'].Value;
@@ -47,6 +50,12 @@ Ext.define('AmazSync.view.products.productList.productListController', {
             productData['dimensionsLLocal'] = dimensions['Length'];
             productData['dimensionsWLocal'] = dimensions['Width'];
             productData['dimensionsHLocal'] = dimensions['Height'];
+        }
+        if(productData['productIdType'] == 3){
+            productData['UPC'] =productData['productId'];
+        }
+        if(productData['productIdType'] == 4){
+            productData['EAN'] =productData['productId']            
         }
         if (!Ext.isEmpty(productData['packageWeight'])) {
 

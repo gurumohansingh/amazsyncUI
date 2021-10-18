@@ -96,7 +96,8 @@ Ext.define('AmazSync.view.products.ProductsPanel', {
         split: true,
         collapsible: true,
         collapsed: true,
-        collapseDirection: 'right'
+        collapseDirection: 'right',
+        reference:'supplierList'
     }
     ]
 });

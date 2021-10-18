@@ -60,6 +60,7 @@ Ext.define('AmazSync.view.products.productList.suppliers.SupplierListController'
     loadForm: function (grid, record, tr, rowIndex, e, eOpts) {
         var me = this, vm = me.getViewModel(), view = me.getView();
         var rec = record.getData();
+        view.getForm().reset();
         rec['productSKU'] = me.sku;
         view.getForm().setValues(rec);
     },

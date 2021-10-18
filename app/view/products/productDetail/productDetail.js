@@ -306,13 +306,6 @@ Ext.define("AmazSync.view.products.productDetail.productDetail", {
                         value: '{location}'
                     }
                 },
-                {
-                    fieldLabel: "Suppliers",
-                    readOnly: true,
-                    bind: {
-                        value: '{suppliers}'
-                    }
-                },
 
                 {
                     fieldLabel: "Reshipping Cost",
@@ -376,6 +369,14 @@ Ext.define("AmazSync.view.products.productDetail.productDetail", {
                     }
                 }
             ]
+        },
+        {
+            xtype:'supplierList',           
+            height:'100%',
+            reference: 'supplierList',
+            width:300,
+            header:false,
+            margin: 10,
         }
     ],
     buttons: [

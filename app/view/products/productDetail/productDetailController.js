@@ -3,13 +3,18 @@ Ext.define('AmazSync.view.products.productDetail.productDetailController', {
     alias: 'controller.products-productdetail-productdetail',
 
     init: function () {
+        
+        var me = this, view = me.getView(), vm = me.getViewModel();
+       
 
     },
     afterrender: function () {
-        debugger
+        
         var me = this, view = me.getView(), vm = me.getViewModel();
         var tagField = view.lookupReference('tagField');
         tagField.setValue(vm.get('tag'));
+        debugger
+        view.lookupReference('supplierList').getproductsuppliers(vm.get('sellerSKU'));
     },
     saveProduct: function (btn) {
 
