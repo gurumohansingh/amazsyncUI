@@ -34,8 +34,8 @@ Ext.define('AmazSync.view.products.productList.productListController', {
         productData['dimensionsHLocal'] = "";
         productData['dimensionsH'] = "";
         productData['tag'] = productData['tag'].split(',');
-        if(!Ext.isEmpty(productData['expirationDateRequired'])){
-            productData['expirationDateRequired']== 1?"Yes":"No";
+        if (!Ext.isEmpty(productData['expirationDateRequired'])) {
+            productData['expirationDateRequired'] == 1 ? "Yes" : "No";
         }
         if (!Ext.isEmpty(productData['dimensions'])) {
             debugger
@@ -51,11 +51,11 @@ Ext.define('AmazSync.view.products.productList.productListController', {
             productData['dimensionsWLocal'] = dimensions['Width'];
             productData['dimensionsHLocal'] = dimensions['Height'];
         }
-        if(productData['productIdType'] == 3){
-            productData['UPC'] =productData['productId'];
+        if (productData['productIdType'] == 3) {
+            productData['UPC'] = productData['productId'];
         }
-        if(productData['productIdType'] == 4){
-            productData['EAN'] =productData['productId']            
+        if (productData['productIdType'] == 4) {
+            productData['EAN'] = productData['productId']
         }
         if (!Ext.isEmpty(productData['packageWeight'])) {
 
@@ -88,5 +88,26 @@ Ext.define('AmazSync.view.products.productList.productListController', {
         var me = this, view = me.getView(), store = view.getStore();
         var product = store.getAt(rowIndex);
         Ext.ComponentQuery.query('supplierList')[0].getproductsuppliers(product.get('sellerSKU'));
+    },
+
+    viewKit: function (grid, rowIndex, colIndex) {
+        var me = this, view = me.getView(), store = view.getStore();
+        var product = store.getAt(rowIndex);
+        var win = Ext.create('Ext.window.Window', {
+            title: 'Kit',
+            items: [{
+                xtype: 'kit',
+                parentProduct: product.getData(),
+            }],
+            width: '90%',
+            height: Ext.getBody().getHeight() - 200,
+            listeners: {
+                close: function () {
+                    store.reload();
+                }
+            }
+        });
+        win.show();
     }
+
 });

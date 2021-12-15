@@ -13,7 +13,7 @@ Ext.define('AmazSync.Application', {
             quickTips: true
         }
     },
-    stores: ['productList', 'skuStore', 'suppierStore'],
+    stores: ['productList', 'skuStore', 'suppierStore', 'binLocatioStore', 'warehouseStore', 'inventoryProductListStore'],
     onAppUpdate: function () {
         Ext.Msg.confirm('Application Update', 'This application has an update, reload?',
             function (choice) {

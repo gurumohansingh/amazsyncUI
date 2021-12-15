@@ -7,7 +7,7 @@ Ext.define('AmazSync.view.main.MainModel', {
     alias: 'viewmodel.main',
 
     data: {
-        loggedUser:'Admin'
+        defaultCurrency: null,
     }
 
     //TODO - add data, formulas and/or methods to support your view

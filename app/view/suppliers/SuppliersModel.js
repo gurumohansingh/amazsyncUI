@@ -27,6 +27,21 @@ Ext.define('AmazSync.view.suppliers.SuppliersModel', {
                     rootProperty: 'users'
                 }
             }
+        },
+        paymentTermsStore: {
+            autoLoad: true,
+            sort: {
+                property: 'value',
+                direction: 'desc'
+            },
+            proxy: {
+                type: 'memory',
+                reader: {
+                    type: 'json',
+                    rootProperty: 'users'
+                }
+            },
+            data: [{ value: 'CHECK' }, { value: 'CC' }, { value: 'ACH' }, { value: 'NET15' }, { value: 'NET30' }, { value: 'NET45' }, { value: 'NET60' }, { value: 'NET90' }]
         }
     }
 

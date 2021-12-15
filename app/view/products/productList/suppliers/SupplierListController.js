@@ -34,7 +34,7 @@ Ext.define('AmazSync.view.products.productList.suppliers.SupplierListController'
             Ext.toast('Selected supplier already associated');
             return false;
         } else {
-            productSuppliersStore.add({ supplierName: supplierName.supplierName, supplierID: supplierName.id });
+            productSuppliersStore.add({ supplierName: supplierName.supplierName, supplierID: supplierName.id, defaultTax: supplierName.defaultTax });
         }
     },
 
@@ -62,6 +62,10 @@ Ext.define('AmazSync.view.products.productList.suppliers.SupplierListController'
         var rec = record.getData();
         view.getForm().reset();
         rec['productSKU'] = me.sku;
+        debugger;
+        if (Ext.isEmpty(rec.tax) || rec.tax == 0) {
+            rec.tax = rec.defaultTax;
+        }
         view.getForm().setValues(rec);
     },
 
@@ -92,6 +96,10 @@ Ext.define('AmazSync.view.products.productList.suppliers.SupplierListController'
             minimumOrderQuantity: form['minimumOrderQuantity'],
             inboundShippingCost: form['inboundShippingCost'],
             additionalSupplierCosts: form['additionalSupplierCosts'],
+            MAP: form['MAP'],
+            MSRP: form['MSRP'],
+            MRP: form['MRP'],
+            tax: form['tax']
         };
         if (Ext.isEmpty(selectedSuppliers.productSKU)) {
             commonutil.apiCall('supplier/addsupplier', commonutil.POST, params, view)

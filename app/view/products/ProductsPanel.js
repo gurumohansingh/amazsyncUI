@@ -38,7 +38,12 @@ Ext.define('AmazSync.view.products.ProductsPanel', {
                 }
             },
             listeners: {
-                change: 'applyFilter'
+                change: 'applyFilter',
+                afterrender: function (cmp) {
+                    cmp.inputEl.set({
+                        autocomplete: 'off'
+                    });
+                }
             }
         }, {
             xtype: 'radiogroup',
@@ -97,7 +102,7 @@ Ext.define('AmazSync.view.products.ProductsPanel', {
         collapsible: true,
         collapsed: true,
         collapseDirection: 'right',
-        reference:'supplierList'
+        reference: 'supplierList'
     }
     ]
 });

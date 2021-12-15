@@ -30,5 +30,20 @@ Ext.define('AmazSync.view.util', {
                 }
             })
         })
+    },
+
+    formCall: function (url, type, params, view, standardSubmit) {
+        var form = Ext.create('Ext.form.Panel', {
+            standardSubmit: standardSubmit,
+            useDefaultXhrHeader: false,
+            url: commonutil.getUrl(url),
+            method: type,
+        });
+        form.submit({
+            params: params,
+            headers: {
+                Authorization: tokenStorage.retrieve(),
+            },
+        });
     }
 });

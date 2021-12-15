@@ -3,7 +3,7 @@ Ext.define('AmazSync.view.user.login.loginController', {
     alias: 'controller.user-login-login',
     init: function () {
         var me = this, vm = me.getViewModel(), view = me.getView(), form = view.getForm();
-        
+
         view.setHidden(true);
         var token = tokenStorage.retrieve();
         if (Ext.isEmpty(token)) {
@@ -18,7 +18,10 @@ Ext.define('AmazSync.view.user.login.loginController', {
                 "authorization": token
             },
             success: function (response) {
-                view.setLoading(false)
+                view.setLoading(false);
+                // Ext.Ajax.on('beforerequest', function (conn, options) {
+                //     options.headers['Authorization'] = tokenStorage.retrieve();
+                // });
                 Ext.create('AmazSync.view.main.Main');
                 view.destroy();
             },

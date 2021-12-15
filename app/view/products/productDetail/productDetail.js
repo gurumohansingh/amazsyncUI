@@ -300,13 +300,33 @@ Ext.define("AmazSync.view.products.productDetail.productDetail", {
             },
             items: [
                 {
-
-                    fieldLabel: "Location",
+                    xtype: 'combo',
+                    fieldLabel: "Warehouse",
+                    valueField: 'id',
+                    forceSelection: true,
+                    displayField: 'name',
                     bind: {
-                        value: '{location}'
+                        value: '{warehouse}'
+                    },
+                    store: 'warehouseStore',
+                    listeners: {
+                        change: 'loadBiLocation'
                     }
                 },
-
+                {
+                    xtype: 'combo',
+                    fieldLabel: "Bin Location",
+                    forceSelection: true,
+                    valueField: 'id',
+                    displayField: 'name',
+                    bind: {
+                        value: '{location}',
+                        store: '{warehouseStore}'
+                    },
+                    listeners: {
+                        change: 'validateBilocation'
+                    }
+                },
                 {
                     fieldLabel: "Reshipping Cost",
                     bind: {
@@ -350,9 +370,17 @@ Ext.define("AmazSync.view.products.productDetail.productDetail", {
                     }
                 },
                 {
-                    fieldLabel: "Target Days On Hand",
+                    xtype: 'numberfield',
+                    fieldLabel: "Target Days In Warehouse",
                     bind: {
-                        value: '{targetDaysOnHand}'
+                        value: '{targetDaysInWarehouse}'
+                    }
+                },
+                {
+                    xtype: 'numberfield',
+                    fieldLabel: "Target Days In Amazon",
+                    bind: {
+                        value: '{targetDaysInAmazon}'
                     }
                 },
                 {
@@ -371,11 +399,11 @@ Ext.define("AmazSync.view.products.productDetail.productDetail", {
             ]
         },
         {
-            xtype:'supplierList',           
-            height:'100%',
+            xtype: 'supplierList',
+            height: '100%',
             reference: 'supplierList',
-            width:300,
-            header:false,
+            width: 300,
+            header: false,
             margin: 10,
         }
     ],

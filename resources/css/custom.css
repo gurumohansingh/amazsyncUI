@@ -52,10 +52,17 @@
   vertical-align: middle !important;
   padding: 5px 0 5px 0;
 }
+.contentcenter .x-grid-td {
+  vertical-align: middle !important;
+  padding: 1px 0 1px 0;
+  border-bottom: 0.5px solid #ff9a00;
+}
 .fontcolorgreen {
   color: #008000 !important;
 }
-
+.fontcolorlightgreen {
+  color: #81b681 !important;
+}
 .fontcolorred {
   color: #ff0000 !important;
 }
@@ -88,4 +95,7 @@
 
 .x-action-col-icon {
   margin: 5px !important;
+}
+.hrline {
+  border-bottom: 1px solid #ff9a00;
 }

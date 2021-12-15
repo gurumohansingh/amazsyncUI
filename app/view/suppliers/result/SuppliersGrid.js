@@ -131,36 +131,10 @@ Ext.define('AmazSync.view.suppliers.result.SuppliersGrid', {
             }
         },
         {
-            text: 'MAP',
-            dataIndex: 'MAP',
-            filter: {
-                type: 'string'
-            }
-        }, {
-            text: 'MSRP (Currency Type)',
-            dataIndex: 'MSRP',
-            filter: {
-                type: 'number'
-            }
-        }, {
-            text: 'MRP (Currency Type)',
-            dataIndex: 'MRP',
-            filter: {
-                type: 'number'
-            }
-        }, {
-            xtype: 'datecolumn',
             text: 'Lead Time',
             dataIndex: 'leadTime',
-            format: 'm-d-y',
             filter: {
-                type: 'string'
-            }
-        }, {
-            text: 'Default Days of Stock',
-            dataIndex: 'defaultDaysofStock',
-            filter: {
-                type: 'string'
+                type: 'number'
             }
         }, {
             text: 'Free Freight Min',

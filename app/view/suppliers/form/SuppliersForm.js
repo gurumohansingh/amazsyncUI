@@ -70,25 +70,9 @@ Ext.define('AmazSync.view.suppliers.form.SuppliersForm', {
             name: 'contactEmail',
             vtype: 'email'
         }, {
-
-            fieldLabel: 'MAP',
-            name: 'MAP'
-        }, {
             xtype: 'numberfield',
-            fieldLabel: 'MSRP',
-            name: 'MSRP'
-        }, {
-            xtype: 'numberfield',
-            fieldLabel: 'MRP',
-            name: 'MRP'
-        }, {
-            xtype: 'datefield',
             fieldLabel: 'Lead Time',
             name: 'leadTime'
-        }, {
-            xtype: 'numberfield',
-            fieldLabel: 'Default Days of Stock',
-            name: 'defaultDaysofStock'
         }, {
             xtype: 'numberfield',
             fieldLabel: 'Free Freight Min',
@@ -98,8 +82,15 @@ Ext.define('AmazSync.view.suppliers.form.SuppliersForm', {
             fieldLabel: 'Min Purchase Budget',
             name: 'minPurchaseBudget'
         }, {
+            xtype: 'combo',
             fieldLabel: 'Payment Terms',
-            name: 'paymentTerms'
+            name: 'paymentTerms',
+            displayField: 'value',
+            valueField: 'value',
+            forceSelection: true,
+            bind: {
+                store: '{paymentTermsStore}'
+            }
         }, {
             xtype: 'textarea',
             fieldLabel: 'PO Notes',
@@ -110,6 +101,7 @@ Ext.define('AmazSync.view.suppliers.form.SuppliersForm', {
             name: 'defaultCurrency',
             displayField: 'value',
             valueField: 'value',
+            forceSelection: true,
             store: {
                 data: [{ value: 'USD' }, { value: 'JPY' }, { value: 'EUR' }, { value: 'GBP' }, { value: 'AUD' }, { value: 'CAD' }, { value: 'CHF' }, { value: 'CNH' },]
             }
@@ -123,8 +115,9 @@ Ext.define('AmazSync.view.suppliers.form.SuppliersForm', {
             name: 'shipmentMethod',
             displayField: 'value',
             valueField: 'value',
+            forceSelection: true,
             store: {
-                data: [{ value: 'Air' }, { value: 'Train' }, { value: 'Truckload' }, { value: 'LTL' }, { value: 'Ocean' }]
+                data: [{ value: 'Air' }, { value: 'Ground' }, { value: 'LTL' }, { value: 'Ocean' }]
             }
         }, {
             xtype: 'textfield',

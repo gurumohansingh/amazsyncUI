@@ -84,6 +84,9 @@ Ext.define('AmazSync.view.suppliers.SuppliersController', {
         form.reset();
         form.setCollapsed(false);
         var editSupplierData = store.getAt(rowIndex).getData();
+        if (Ext.isEmpty(editSupplierData.defaultCurrency)) {
+            editSupplierData.defaultCurrency = AmazSync.defaultCurrency;
+        }
         form.getForm().setValues(editSupplierData);
     }
 });

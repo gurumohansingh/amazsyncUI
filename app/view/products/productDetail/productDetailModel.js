@@ -37,14 +37,16 @@ Ext.define('AmazSync.view.products.productDetail.productDetailModel', {
         status: null,
         suppliers: null,
         tag: null,
-        targetDaysOnHand: null,
+        targetDaysInWarehouse: null,
+        targetDaysInAmazon: null,
         timeStamp: null,
         dimensionsLLocal: null,
         dimensionsL: null,
         dimensionsWLocal: null,
         dimensionsW: null,
         dimensionsHLocal: null,
-        dimensionsH: null
+        dimensionsH: null,
+        warehouse: null,
     },
     stores: {
         tagStore: {
@@ -56,6 +58,19 @@ Ext.define('AmazSync.view.products.productDetail.productDetailModel', {
             }],
             proxy: {
                 type: 'memory',
+                reader: {
+                    type: 'json',
+                    rootProperty: ''
+                }
+            }
+        },
+        warehouseStore: {
+            autoLoad: false,
+            method: 'GET',
+            type: 'ajaxStore',
+            proxy: {
+                type: 'ajax',
+                url: commonutil.getUrl('location/getbinlocations'),
                 reader: {
                     type: 'json',
                     rootProperty: ''

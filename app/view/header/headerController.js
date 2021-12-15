@@ -29,6 +29,22 @@ Ext.define('AmazSync.view.header.headerController', {
             title: 'Suppliers'
         });
     },
+    openlocation: function (btn) {
+        navigation.addComponent({
+            xtype: 'locationPanel',
+            tabName: 'Locations',
+            title: 'Locations'
+        });
+        return false;
+    },
+    localInventory: function (btn) {
+        console.log(new Date());
+        navigation.addComponent({
+            xtype: 'inventory',
+            tabName: 'inventory',
+            title: 'Inventory'
+        });
+    },
     updateInventory: function (btn) {
         Ext.Msg.show({
             title: 'Updating Local Inventory',

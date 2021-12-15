@@ -91,6 +91,24 @@ Ext.define('AmazSync.view.products.productList.suppliers.SupplierList', {
             allowBlank: false,
             name: 'supplierSKU'
         }, {
+            fieldLabel: 'MAP',
+            name: 'MAP',
+            filter: {
+                type: 'string'
+            }
+        }, {
+            fieldLabel: 'MSRP($)',
+            name: 'MSRP',
+            filter: {
+                type: 'number'
+            }
+        }, {
+            fieldLabel: 'MRP($)',
+            name: 'MRP',
+            filter: {
+                type: 'number'
+            }
+        }, {
             fieldLabel: 'Cost Per Unit',
             allowBlank: false,
             name: 'costPerUnit',
@@ -127,6 +145,10 @@ Ext.define('AmazSync.view.products.productList.suppliers.SupplierList', {
             fieldLabel: 'Additional Supplier Costs',
             allowBlank: false,
             name: 'additionalSupplierCosts'
+        },
+        {
+            fieldLabel: 'Tax(%)',
+            name: 'tax'
         }
         ]
     }],

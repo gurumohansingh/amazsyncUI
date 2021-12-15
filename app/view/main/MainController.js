@@ -7,6 +7,14 @@ Ext.define('AmazSync.view.main.MainController', {
 
     alias: 'controller.main',
     init: function () {
+        var vm = this.getViewModel();
+        commonutil.apiCall('settings/getsetting', commonutil.GET, { settinggroup: 'suppliersettings' }, null)
+            .then(response => {
+                var setting = JSON.parse(response);
+
+                var defaultCurrency = JSON.parse(setting.settings)
+                AmazSync.defaultCurrency = defaultCurrency && defaultCurrency.defaultCurrency;
+            })
         Ext.on('resize', function (view) {
 
             Ext.ComponentQuery.query("app-main")[0].updateLayout({ defer: 100, isRoot: true });

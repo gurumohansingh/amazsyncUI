@@ -1,44 +1,30 @@
 
-Ext.define('AmazSync.view.products.productList.productList', {
+Ext.define('AmazSync.view.inventory.list.InventoryList', {
     extend: 'Ext.grid.Panel',
-    xtype: 'productList',
+    xtype: 'inventoryList',
     requires: [
-        'AmazSync.view.products.productList.productListController',
-        'AmazSync.view.products.productList.productListModel',
-        'AmazSync.store.productList',
-        'Ext.toolbar.Toolbar'
+        'AmazSync.view.inventory.list.InventoryListController',
+        'AmazSync.view.inventory.list.InventoryListModel'
     ],
 
-    controller: 'products-productlist-productlist',
-
+    controller: 'inventory-list-inventorylist',
     viewModel: {
-        type: 'products-productlist-productlist'
+        type: 'inventory-list-inventorylist'
     },
-    cls: 'productlistgrid',
-    reference: 'productList',
-    store: 'productList',
+    //cls: 'productlistgrid',
+    reference: 'inventoryList',
+    store: 'inventoryProductListStore',
     plugins: 'gridfilters',
-    tools: [{
-        iconCls: 'x-fa fa-sync fontcolorgreen',
-        tooltip: 'Refresh',
-        title: 'Sync',
-        handler: 'syncProducts',
-        margin: '0 0 0 10px'
-    },
-    {
-        type: 'help',
-        tooltip: 'Get Help',
-        cls: 'fa-lg fontmustard',
-        margin: '0 0 0 10px'
-    }, {
-        xtype: 'label',
-        bind: {
-            html: '<span>Total Products: {totalCount}</span>',
-        }
-    }],
+    padding: 5,
+    rowLines: false,
     titlePosition: 2,
     padding: 5,
     rowLines: false,
+    selModel: 'cellmodel',
+    plugins: {
+        ptype: 'cellediting',
+        clicksToEdit: 1
+    },
     viewConfig: {
         enableTextSelection: true,
         emptyText: '<span class="emptytext">No product found</span>',
@@ -50,24 +36,6 @@ Ext.define('AmazSync.view.products.productList.productList', {
             width: 'auto'
         },
         items: [
-            {
-                xtype: 'actioncolumn',
-                text: 'Edit/Refresh/Supplier',
-                width: 150,
-                items: [{
-                    iconCls: 'x-fa fa-edit fontcolorgreen',
-                    handler: 'editProduct',
-                    tooltip: 'Edit Product'
-                }, {
-                    iconCls: 'x-fa fa-sync fontcolorgreen',
-                    handler: 'syncProduct',
-                    tooltip: 'Sync from Amazon'
-                }, {
-                    iconCls: 'x-fa fa-dolly fontcolorgreen',
-                    handler: 'getProductSuppliers',
-                    tooltip: 'View/Edit Suppliers'
-                }]
-            },
             {
                 text: 'Image',
                 xtype: 'templatecolumn',
@@ -95,25 +63,34 @@ Ext.define('AmazSync.view.products.productList.productList', {
                 }
             },
             {
-                xtype: 'actioncolumn',
-                text: 'Kit',
-                items: [{
-                    handler: 'viewKit',
-                    tooltip: 'View/Edit Kit',
-                    getClass: function (v, meta, rec) {
-                        if (rec.get('kit') == true)
-                            return 'x-fa fa-suitcase-rolling fontcolorgreen';
-                        else
-                            return 'x-fa fa-suitcase-rolling fontcolorlightgreen';
-                    }
-                }]
-            },
-            {
                 text: 'Status',
                 dataIndex: 'status',
                 width: 100,
                 filter: {
                     type: 'list'
+                }
+            }, {
+                text: 'Warehouse ',
+                dataIndex: 'warehouse',
+                filter: {
+                    type: 'string'
+                }
+            },
+            {
+                text: 'Bin Location',
+                dataIndex: 'location',
+                filter: {
+                    type: 'string'
+                }
+            }, {
+                text: 'Stock',
+                dataIndex: 'inventoryCount',
+                editor: {
+                    xtype: 'numberfield'
+                },
+                width: 50,
+                filter: {
+                    type: 'number'
                 }
             },
             {
@@ -152,46 +129,47 @@ Ext.define('AmazSync.view.products.productList.productList', {
                 text: 'Case Pack UPC',
                 dataIndex: ''
             },
+            // {
+            //     text: 'Package Weight<br><span class="fontcolorgreen">Unit</span>',
+            //     dataIndex: 'dimensions',
+            //     renderer: function (value) {
+            //         try {
+            //             if (!Ext.isEmpty(value)) {
+            //                 var weight = JSON.parse(value).Weight;
+            //                 return weight ? `${Ext.util.Format.number(weight.Value, "0.00")}<br><span class="fontcolorgreen">${weight.Units}</span>` : '';
+            //             }
+            //         }
+            //         catch (err) { console.log(err); }
+            //     }
+            // },
+            // {
+            //     text: 'Amazon Package Weight<br><span class="fontcolorgreen">Unit</span>',
+            //     dataIndex: 'packageDimensions',
+            //     renderer: function (value) {
+            //         try {
+            //             if (!Ext.isEmpty(value)) {
+            //                 var weight = JSON.parse(value).Weight;
+            //                 return weight ? `${Ext.util.Format.number(weight.Value, "0.00")}<br><span class="fontcolorgreen">${weight.Units}</span>` : '';
+            //             }
+            //         }
+            //         catch (err) { console.log(err); }
+            //     }
+            // },
+            // {
+            //     text: 'Dimensions (Amazon)LxWxH<br><span class="fontcolorgreen">Unit</span>',
+            //     dataIndex: 'packageDimensions',
+            //     renderer: function (value) {
+            //         try {
+            //             if (!Ext.isEmpty(value)) {
+            //                 var x = '<span class="fontcolorgreen"> x </span>'
+            //                 var dimensions = JSON.parse(value);
+            //                 return `${Ext.util.Format.number(dimensions.Length.Value, "0.00")}${x}${Ext.util.Format.number(dimensions.Width.Value, "0.00")}${x}${Ext.util.Format.number(dimensions.Height.Value, "0.00")}<br><span class="fontcolorgreen">${dimensions.Height.Units}</span>`
+            //             }
+            //         }
+            //         catch (err) { console.log(err); }
+            //     }
+            // },
             {
-                text: 'Package Weight<br><span class="fontcolorgreen">Unit</span>',
-                dataIndex: 'dimensions',
-                renderer: function (value) {
-                    try {
-                        if (!Ext.isEmpty(value)) {
-                            var weight = JSON.parse(value).Weight;
-                            return weight ? `${Ext.util.Format.number(weight.Value, "0.00")}<br><span class="fontcolorgreen">${weight.Units}</span>` : '';
-                        }
-                    }
-                    catch (err) { console.log(err); }
-                }
-            },
-            {
-                text: 'Amazon Package Weight<br><span class="fontcolorgreen">Unit</span>',
-                dataIndex: 'packageDimensions',
-                renderer: function (value) {
-                    try {
-                        if (!Ext.isEmpty(value)) {
-                            var weight = JSON.parse(value).Weight;
-                            return weight ? `${Ext.util.Format.number(weight.Value, "0.00")}<br><span class="fontcolorgreen">${weight.Units}</span>` : '';
-                        }
-                    }
-                    catch (err) { console.log(err); }
-                }
-            },
-            {
-                text: 'Dimensions (Amazon)LxWxH<br><span class="fontcolorgreen">Unit</span>',
-                dataIndex: 'packageDimensions',
-                renderer: function (value) {
-                    try {
-                        if (!Ext.isEmpty(value)) {
-                            var x = '<span class="fontcolorgreen"> x </span>'
-                            var dimensions = JSON.parse(value);
-                            return `${Ext.util.Format.number(dimensions.Length.Value, "0.00")}${x}${Ext.util.Format.number(dimensions.Width.Value, "0.00")}${x}${Ext.util.Format.number(dimensions.Height.Value, "0.00")}<br><span class="fontcolorgreen">${dimensions.Height.Units}</span>`
-                        }
-                    }
-                    catch (err) { console.log(err); }
-                }
-            }, {
                 text: 'Date Added',
                 xtype: 'datecolumn',
                 dataIndex: 'dateAdded',
@@ -214,20 +192,7 @@ Ext.define('AmazSync.view.products.productList.productList', {
                 text: 'Hazmat (Amazon)',
                 dataIndex: ''
             },
-            {
-                text: 'Bin Location',
-                dataIndex: 'location',
-                filter: {
-                    type: 'string'
-                }
-            },
-            {
-                text: 'Warehouse ',
-                dataIndex: 'warehouse',
-                filter: {
-                    type: 'string'
-                }
-            },
+
             {
                 text: 'Notes',
                 dataIndex: 'itemNote',
@@ -259,20 +224,7 @@ Ext.define('AmazSync.view.products.productList.productList', {
                     type: 'string'
                 }
             },
-            // {
-            //     text: 'Suppliers',
-            //     dataIndex: 'suppliers',
-            //     renderer: function (value) {
-            //         if (!Ext.isEmpty(value)) {
-            //             var suppliers = value.split(',');
-            //             var link = '';
-            //             suppliers.forEach(element => {
-            //                 link = link.concat(`<a href=#>${element.split('|')[0]}</a>`, '</br>')
-            //             });
-            //             return link;
-            //         }
-            //     }
-            // },
+
             {
                 text: 'Expiration Date Required? (Amazon)',
                 dataIndex: '',
@@ -320,12 +272,6 @@ Ext.define('AmazSync.view.products.productList.productList', {
             {
                 text: 'Update By',
                 dataIndex: 'user'
-            }, {
-                xtype: 'actioncolumn',
-                text: 'Refresh',
-                items: [{
-
-                }]
             }
         ]
     }

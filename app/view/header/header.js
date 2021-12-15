@@ -28,11 +28,25 @@ Ext.define('AmazSync.view.header.header', {
             handler: 'openproductList'
         }, {
             xtype: 'button',
-            iconCls: 'x-fa fa-dolly  fa-lg fontmustard',
+            iconCls: 'x-fa fa-dolly fa-lg fontmustard',
             cls: 'headerbtn',
             margin: '0 0 0 30px',
             text: 'Suppliers',
             handler: 'openSuppliers'
+        }, {
+            xtype: 'button',
+            iconCls: 'x-fa fa-warehouse fa-lg fontmustard',
+            cls: 'headerbtn',
+            margin: '0 0 0 30px',
+            text: 'Inventory',
+            handler: 'localInventory'
+        }, {
+            xtype: 'button',
+            iconCls: 'x-fa fa-location-arrow  fa-lg fontmustard',
+            cls: 'headerbtn',
+            margin: '0 0 0 30px',
+            text: 'Locations',
+            handler: 'openlocation'
         }, {
             xtype: 'button',
             iconCls: 'x-fa fa-sync fa-lg fontmustard',

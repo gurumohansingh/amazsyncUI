@@ -16,6 +16,9 @@ Ext.define('AmazSync.view.settings.setting', {
         xtype: 'amazonConnectSetting',
         title: 'Amazon Connect'
     }, {
+        xtype: 'supplierSettings',
+        title: 'Defaults'
+    }, {
         title: 'SMTP Setting'
     },
     {
